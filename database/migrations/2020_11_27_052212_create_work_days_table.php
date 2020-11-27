@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateWorkDaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -22,13 +22,31 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            $table->string('dni')->unique();
+            $table->string('dni');
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
 
             $table->string('role'); // 'admin', 'patient', 'doctor'
 
             $table->rememberToken();
+            $table->timestamps();
+        });
+
+        Schema::create('work_days', function (Blueprint $table) {
+            $table->bigIncrements('id');
+
+            $table->unsignedSmallInteger('day');
+            $table->boolean('active');
+
+            $table->time('morning_start')->nullable();
+            $table->time('morning_end')->nullable();
+
+            $table->time('afternoon_start')->nullable();
+            $table->time('afternoon_end')->nullable();
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }
@@ -40,6 +58,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('work_days');
         Schema::dropIfExists('users');
     }
 }

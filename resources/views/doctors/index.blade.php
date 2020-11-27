@@ -21,6 +21,23 @@
               </div>
               @endif
             </div>
+
+    <nav class="navbar navbar-light float-right">
+        <form class="form-inline">
+
+        <select name="tipo" class="form-control form-control-sm" id="exampleFormControlSelect1">
+          <option>Buscar por tipo</option>
+          <option>name</option>
+          <option>email</option>
+          <option>dni</option>
+        </select>
+
+        <input name="buscarpor" class="form-control form-control-sm" type="search" placeholder="Buscar por nombre" aria-label="Search">
+
+        <button class="btn btn-sm btn-info" type="submit">Buscar</button>
+        </form>
+      </nav>
+
             <div class="table-responsive">
               <!-- Projects table -->
               <table class="table align-items-center table-flush">
@@ -60,6 +77,9 @@
 
                 </tbody>
               </table>
+            </div>
+            <div class="card-body">
+              {{ $doctors->links() }}
             </div>
           </div>
 @endsection
