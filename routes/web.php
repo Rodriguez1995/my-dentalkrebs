@@ -53,8 +53,7 @@ Route::middleware('auth')->group(function () {
 	Route::get('/appointments/{appointment}/attended','AppointmentController@postAttended');
 
 	// JSON
-	Route::get('/specialties/{specialty}/doctors', 'Api\SpecialtyController@doctors');
-	Route::get('/schedule/hours', 'Api\ScheduleController@hours');
+	
 });
 
 

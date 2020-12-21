@@ -46,7 +46,7 @@
     </a>
     @endif
 
-    @if ($role == 'doctor' || $role == 'admin')
+    @if ($role == 'doctor')
     <a class="btn btn-sm btn-success" title="Atender cita" href="{{ url('/appointments/'.$appointment->id.'/attended') }}">
            Atendido
     </a>

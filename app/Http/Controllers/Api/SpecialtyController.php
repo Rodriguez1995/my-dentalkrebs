@@ -9,6 +9,13 @@ use App\Specialty;
 
 class SpecialtyController extends Controller
 {
+
+	public function index(Specialty $specialty)
+    {
+    	return Specialty::all(['id', 'name']);
+    }
+
+
     public function doctors(Specialty $specialty)
     {
     	return $specialty->users()->get([
