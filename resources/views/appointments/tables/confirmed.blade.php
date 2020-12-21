@@ -46,9 +46,19 @@
     </a>
     @endif
 
+    @if ($role == 'doctor' || $role == 'admin')
+    <a class="btn btn-sm btn-success" title="Atender cita" href="{{ url('/appointments/'.$appointment->id.'/attended') }}">
+           Atendido
+    </a>
+
     <a class="btn btn-sm btn-danger" title="Cancelar cita" href="{{ url('/appointments/'.$appointment->id.'/cancel') }}">
            Cancelar
     </a>
+    @else
+    <a class="btn btn-sm btn-danger" title="Cancelar cita" href="{{ url('/appointments/'.$appointment->id.'/cancel') }}">
+           Cancelar
+    </a>
+    @endif 
 
   </td>
   </tr>

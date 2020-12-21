@@ -15,12 +15,12 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Acabas de Iniciar Sessión Correctamente!
                 </div>
             </div>
         </div>
 
-    <div class="col-xl-8 mb-5 mb-xl-0">
+    {{--<div class="col-xl-8 mb-5 mb-xl-0">
           <div class="card bg-gradient-default shadow">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
@@ -292,5 +292,5 @@
             </div>
           </div>
     </div>
-    </div>
+  </div>--}}
 @endsection

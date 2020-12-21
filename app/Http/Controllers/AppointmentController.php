@@ -157,7 +157,7 @@ class AppointmentController extends Controller
         if ($request->has('justification')){
             $cancellation = new CancelledAppointment();
             $cancellation->justification = $request->input('justification');
-            $cancellation->cancelled_by = auth()->id();
+            $cancellation->cancelled_by_id = auth()->id();
             // $cancellation->appointment_id = ;
             // $cancellation->save();
 
@@ -177,6 +177,15 @@ class AppointmentController extends Controller
         $appointment->save(); // update
 
         $notification = 'La cita se ha confirmado correctamente.';
+        return redirect('/appointments')->with(compact('notification'));
+    }
+
+    public function postAttended(Appointment $appointment)
+    {
+        $appointment->status = 'Atendida';
+        $appointment->save(); // update
+
+        $notification = 'La cita ha sido Atendida correctamente.';
         return redirect('/appointments')->with(compact('notification'));
     }
 }

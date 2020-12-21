@@ -10,4 +10,9 @@ class CancelledAppointment extends Model
     {	// belongsTo Cancellation N - 1 User
     	return $this->belongsTo(User::class);
     }
+
+    public function cancelled_by_id() //cancelled_by_id
+    {	// belongsTo Cancellation N - 1 User
+    	return $this->belongsTo(User::class);
+    }
 }

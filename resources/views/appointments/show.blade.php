@@ -19,6 +19,9 @@
                 <li>
                   <strong>Hora:</strong> {{ $appointment->scheduled_time }}
                 </li>
+                <li>
+                  <strong>Descripción:</strong> {{ $appointment->description }}
+                </li>
 
                 @if ($role == 'patient' || $role == 'admin' )
                   <li>
@@ -63,6 +66,7 @@
                     Tú
                   @else
                     {{ $appointment->cancellation->cancelled_by->name }}
+                    
                   @endif
                 </li>
                 <li>
