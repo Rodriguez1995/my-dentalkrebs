@@ -38,11 +38,11 @@ class CreateWorkDaysTable extends Migration
             $table->unsignedSmallInteger('day');
             $table->boolean('active');
 
-            $table->time('morning_start')->nullable();
-            $table->time('morning_end')->nullable();
+            $table->time('morning_start');
+            $table->time('morning_end');
 
-            $table->time('afternoon_start')->nullable();
-            $table->time('afternoon_end')->nullable();
+            $table->time('afternoon_start');
+            $table->time('afternoon_end');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

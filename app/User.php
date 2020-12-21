@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'pivot'
     ];
 
     /**
@@ -36,6 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // $user->specialties
+    public function specialties()
+    {
+        return $this->belongsToMany(Specialty::class)->withTimestamps();
+    }
 
     public function scopePatients($query)
     {
@@ -50,5 +56,27 @@ class User extends Authenticatable
         if ( ($tipo) && ($buscar) ) {
             return $query->where($tipo,'like',"%$buscar%");
         }
+    }
+
+    // $user->asPatientAppointments ->requestedAppointments
+    // $user->asDoctorAppointments  ->attendedAppointments
+    public function asDoctorAppointments()
+    {
+        return $this->hasMany(Appointment::class, 'doctor_id');
+    }
+
+    public function attendedAppointments()
+    {
+        return $this->asDoctorAppointments()->where('status','Atendida');
+    }
+
+    public function cancelledAppointments()
+    {
+        return $this->asDoctorAppointments()->where('status','Cancelada');
+    }
+
+    public function asPatientAppointments()
+    {
+        return $this->hasMany(Appointment::class, 'patient_id');
     }
 }
