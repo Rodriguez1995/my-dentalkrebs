@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Appointment;
+use App\Http\Requests\StoreAppointment;
 
 class AppointmentController extends Controller
 {
@@ -42,7 +43,7 @@ class AppointmentController extends Controller
     	$patientId = Auth::guard('api')->id()
 
     	$appointment = Appointment::createForPatient($request, $patientId);
-    	
+
     	if ($appointment)
     		$success = true;
     	else
